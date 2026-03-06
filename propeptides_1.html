@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pro Peptides — Research Grade. Canadian Made.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #f5f4f0;
+      --grey-light: #e8e6e1;
+      --grey-mid: #b0aca4;
+      --grey-dark: #3a3836;
+      --accent: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 68px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--grey-mid); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--grey-mid);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-cta {
+      padding: 9px 22px;
+      border: 1px solid var(--white);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--white); color: var(--black); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 80px 64px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--grey-mid);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 8vw, 120px);
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--grey-mid);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.65em;
+      display: block;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-sub {
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--grey-mid);
+      max-width: 400px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 14px 36px;
+      background: var(--white);
+      color: var(--black);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--grey-light); }
+
+    .btn-ghost {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+
+    .btn-ghost::after { content: '→'; }
+    .btn-ghost:hover { color: var(--white); }
+
+    .hero-stats {
+      margin-top: 64px;
+      display: flex;
+      gap: 40px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-item {}
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 36px;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      margin-top: 4px;
+    }
+
+    /* Hero right */
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.03) 100%);
+    }
+
+    .hero-visual {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .molecule-svg {
+      width: 380px;
+      height: 380px;
+      opacity: 0.15;
+      animation: rotateSlow 40s linear infinite;
+    }
+
+    @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+    .hero-product-card {
+      position: absolute;
+      width: 200px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 24px;
+      backdrop-filter: blur(8px);
+      animation: floatCard 6s ease-in-out infinite;
+    }
+
+    .hero-product-card.card-2 {
+      top: 20%;
+      right: 10%;
+      animation-delay: -3s;
+    }
+
+    .hero-product-card.card-1 {
+      bottom: 22%;
+      left: 8%;
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .hpc-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      margin-bottom: 8px;
+    }
+
+    .hpc-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .hpc-price {
+      font-size: 12px;
+      color: var(--grey-mid);
+    }
+
+    .hpc-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--white);
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    /* Vertical text */
+    .hero-vertical-text {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      transform-origin: center;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.15);
+      white-space: nowrap;
+    }
+
+    /* ── TICKER ── */
+    .ticker-bar {
+      background: var(--white);
+      color: var(--black);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-inner {
+      display: inline-flex;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-item {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      padding: 0 40px;
+    }
+
+    .ticker-sep {
+      color: var(--grey-dark);
+      padding: 0 4px;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── CATEGORIES ── */
+    .section {
+      padding: 100px 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(40px, 5vw, 64px);
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    .section-link {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .section-link:hover { color: var(--white); }
+    .section-link::after { content: '→'; }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .cat-card {
+      background: var(--black);
+      padding: 36px 28px;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--white);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .cat-card:hover { background: rgba(255,255,255,0.04); }
+    .cat-card:hover::before { transform: scaleX(1); }
+
+    .cat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .cat-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .cat-desc {
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--grey-mid);
+      margin-bottom: 20px;
+    }
+
+    .cat-count {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+    }
+
+    /* ── FEATURED PRODUCTS ── */
+    .products-section {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .product-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+      transition: border-color 0.25s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .product-card:hover { border-color: rgba(255,255,255,0.35); }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-img svg {
+      opacity: 0.3;
+      width: 80px;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 16px; left: 16px;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .product-info {
+      padding: 24px;
+    }
+
+    .product-cat {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      margin-bottom: 8px;
+    }
+
+    .product-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 26px;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--grey-mid);
+      margin-bottom: 20px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.05em;
+    }
+
+    .product-add {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--white);
+      border: none;
+      padding: 10px 18px;
+      cursor: pointer;
+      font-family: 'DM Mono', monospace;
+      transition: background 0.2s;
+    }
+    .product-add:hover { background: var(--grey-light); }
+
+    /* ── WHY US ── */
+    .why-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 500px;
+    }
+
+    .why-left {
+      padding: 100px 64px;
+      background: var(--white);
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .why-left .section-label { color: var(--grey-dark); }
+    .why-left .section-title { color: var(--black); }
+
+    .why-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: var(--grey-dark);
+      margin-top: 24px;
+      max-width: 440px;
+    }
+
+    .why-cta {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 14px 36px;
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .why-cta:hover { background: var(--grey-dark); }
+
+    .why-right {
+      padding: 80px 64px;
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 24px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .why-item:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+
+    .why-icon {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 18px;
+    }
+
+    .why-item-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.07em;
+      margin-bottom: 6px;
+    }
+
+    .why-item-desc {
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--grey-mid);
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 56px;
+    }
+
+    .process-step {
+      padding: 0 40px 0 0;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '';
+      position: absolute;
+      top: 22px;
+      right: 0;
+      width: calc(100% - 44px);
+      height: 1px;
+      background: rgba(255,255,255,0.12);
+      left: 44px;
+    }
+
+    .process-step:last-child::after { display: none; }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+      background: var(--black);
+    }
+
+    .step-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.07em;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 11px;
+      line-height: 1.7;
+      color: var(--grey-mid);
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-section {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .testimonial-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 32px;
+    }
+
+    .testimonial-stars {
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .testimonial-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--grey-light);
+      margin-bottom: 24px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .author-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-family: 'Bebas Neue';
+      letter-spacing: 0.05em;
+    }
+
+    .author-name {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+
+    .author-title {
+      font-size: 10px;
+      color: var(--grey-mid);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── BANNER ── */
+    .cta-banner {
+      padding: 100px 64px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: 'PRO';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 300px;
+      color: rgba(255,255,255,0.025);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      letter-spacing: 0.2em;
+      white-space: nowrap;
+    }
+
+    .cta-label {
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--grey-mid);
+      margin-bottom: 24px;
+    }
+
+    .cta-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 80px);
+      letter-spacing: 0.05em;
+      margin-bottom: 20px;
+    }
+
+    .cta-sub {
+      font-size: 13px;
+      color: var(--grey-mid);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ── NEWSLETTER ── */
+    .newsletter-section {
+      padding: 64px;
+      background: var(--white);
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .newsletter-text h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .newsletter-text p {
+      font-size: 12px;
+      color: var(--grey-dark);
+      line-height: 1.6;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      flex: 0 0 auto;
+    }
+
+    .newsletter-input {
+      padding: 13px 20px;
+      border: 1px solid var(--black);
+      border-right: none;
+      background: transparent;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      width: 300px;
+      outline: none;
+      color: var(--black);
+    }
+
+    .newsletter-input::placeholder { color: var(--grey-dark); }
+
+    .newsletter-btn {
+      padding: 13px 28px;
+      background: var(--black);
+      color: var(--white);
+      border: 1px solid var(--black);
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: var(--grey-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 64px 64px 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .footer-brand-logo span { color: var(--grey-mid); }
+
+    .footer-tagline {
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--grey-mid);
+      max-width: 260px;
+      margin-bottom: 28px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--grey-mid);
+      text-decoration: none;
+      font-size: 12px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-icon:hover { border-color: var(--white); color: var(--white); }
+
+    .footer-col h4 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      font-size: 12px;
+      color: var(--grey-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--white); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-legal a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--grey-mid); }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 60px 24px; }
+      .section { padding: 64px 24px; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .products-grid { grid-template-columns: 1fr; }
+      .why-section { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .process-step::after { display: none; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .newsletter-section { flex-direction: column; padding: 40px 24px; }
+      .newsletter-input { width: 220px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      footer { padding: 48px 24px 24px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">PRO<span>PEPTIDES</span></a>
+  <ul class="nav-links">
+    <li><a href="#products">Products</a></li>
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-cta">Shop Now</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Canadian Research Supply</div>
+    <h1 class="hero-title">
+      Research<br />
+      Grade<br />
+      <em>Peptides &amp; More</em>
+    </h1>
+    <p class="hero-sub">
+      Premium quality peptides synthesized for research applications. 
+      Third-party tested, purity-certified, and shipped discreetly across Canada.
+    </p>
+    <div class="hero-actions">
+      <a href="#products" class="btn-primary">Browse Products</a>
+      <a href="#about" class="btn-ghost">Our Standards</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">99%+</div>
+        <div class="stat-label">Purity Guarantee</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">120+</div>
+        <div class="stat-label">Products</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">48H</div>
+        <div class="stat-label">Dispatch</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-visual">
+      <svg class="molecule-svg" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="140" stroke="white" stroke-width="0.5"/>
+        <circle cx="150" cy="150" r="100" stroke="white" stroke-width="0.5"/>
+        <circle cx="150" cy="150" r="60" stroke="white" stroke-width="0.5"/>
+        <circle cx="150" cy="10" r="8" fill="white"/>
+        <circle cx="150" cy="290" r="8" fill="white"/>
+        <circle cx="10" cy="150" r="8" fill="white"/>
+        <circle cx="290" cy="150" r="8" fill="white"/>
+        <circle cx="51" cy="51" r="6" fill="white" opacity="0.6"/>
+        <circle cx="249" cy="51" r="6" fill="white" opacity="0.6"/>
+        <circle cx="51" cy="249" r="6" fill="white" opacity="0.6"/>
+        <circle cx="249" cy="249" r="6" fill="white" opacity="0.6"/>
+        <line x1="150" y1="10" x2="150" y2="290" stroke="white" stroke-width="0.3" opacity="0.3"/>
+        <line x1="10" y1="150" x2="290" y2="150" stroke="white" stroke-width="0.3" opacity="0.3"/>
+        <line x1="51" y1="51" x2="249" y2="249" stroke="white" stroke-width="0.3" opacity="0.3"/>
+        <line x1="249" y1="51" x2="51" y2="249" stroke="white" stroke-width="0.3" opacity="0.3"/>
+        <circle cx="150" cy="150" r="20" stroke="white" stroke-width="1"/>
+        <circle cx="150" cy="150" r="4" fill="white"/>
+      </svg>
+
+      <div class="hero-product-card card-1">
+        <div class="hpc-label">Bestseller</div>
+        <div class="hpc-name">BPC-157</div>
+        <div class="hpc-price"><span class="hpc-dot"></span>$89.00 CAD</div>
+      </div>
+
+      <div class="hero-product-card card-2">
+        <div class="hpc-label">New Arrival</div>
+        <div class="hpc-name">TB-500</div>
+        <div class="hpc-price"><span class="hpc-dot"></span>$115.00 CAD</div>
+      </div>
+    </div>
+    <div class="hero-vertical-text">Research Grade · Canadian Supply · Purity Certified</div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-item">Free Shipping Over $150 <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Third-Party Lab Tested <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">99%+ Purity Guaranteed <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Discreet Packaging <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Fast Canadian Shipping <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Secure Checkout <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Research Use Only <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Free Shipping Over $150 <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Third-Party Lab Tested <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">99%+ Purity Guaranteed <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Discreet Packaging <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Fast Canadian Shipping <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Secure Checkout <span class="ticker-sep">·</span></span>
+    <span class="ticker-item">Research Use Only <span class="ticker-sep">·</span></span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section id="categories" class="section">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-label">What we offer</div>
+      <h2 class="section-title">Product<br />Categories</h2>
+    </div>
+    <a href="#" class="section-link">View All</a>
+  </div>
+  <div class="categories-grid fade-up">
+    <a href="#" class="cat-card">
+      <div class="cat-num">01</div>
+      <div class="cat-name">Growth Peptides</div>
+      <div class="cat-desc">GHRP-2, GHRP-6, Ipamorelin and more growth hormone secretagogues for research applications.</div>
+      <div class="cat-count">14 Products</div>
+    </a>
+    <a href="#" class="cat-card">
+      <div class="cat-num">02</div>
+      <div class="cat-name">Healing Peptides</div>
+      <div class="cat-desc">BPC-157, TB-500 and other regenerative compounds studied for tissue repair research.</div>
+      <div class="cat-count">9 Products</div>
+    </a>
+    <a href="#" class="cat-card">
+      <div class="cat-num">03</div>
+      <div class="cat-name">Weight Management</div>
+      <div class="cat-desc">CJC-1295, AOD-9604 and metabolic peptides for body composition research.</div>
+      <div class="cat-count">11 Products</div>
+    </a>
+    <a href="#" class="cat-card">
+      <div class="cat-num">04</div>
+      <div class="cat-name">Cognitive & Neuro</div>
+      <div class="cat-desc">Semax, Selank, Dihexa and neuropeptides for cognitive enhancement research.</div>
+      <div class="cat-count">8 Products</div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section id="products" class="section products-section">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-label">Top Sellers</div>
+      <h2 class="section-title">Featured<br />Products</h2>
+    </div>
+    <a href="#" class="section-link">View All Products</a>
+  </div>
+  <div class="products-grid">
+
+    <a href="#" class="product-card fade-up">
+      <div class="product-img">
+        <span class="product-badge">Bestseller</span>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="40" cy="40" r="30" stroke="white" stroke-width="1"/>
+          <circle cx="40" cy="40" r="18" stroke="white" stroke-width="1"/>
+          <circle cx="40" cy="40" r="6" fill="white" opacity="0.6"/>
+          <line x1="10" y1="40" x2="70" y2="40" stroke="white" stroke-width="0.5"/>
+          <line x1="40" y1="10" x2="40" y2="70" stroke="white" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Healing Peptide</div>
+        <div class="product-name">BPC-157</div>
+        <div class="product-desc">Body Protection Compound. Studied for its role in wound healing, gut health, and tendon repair research.</div>
+        <div class="product-footer">
+          <div class="product-price">$89.00</div>
+          <button class="product-add">Add to Cart</button>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="product-card fade-up">
+      <div class="product-img">
+        <span class="product-badge">New</span>
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="15" y="15" width="50" height="50" stroke="white" stroke-width="1"/>
+          <rect x="25" y="25" width="30" height="30" stroke="white" stroke-width="1"/>
+          <rect x="35" y="35" width="10" height="10" fill="white" opacity="0.5"/>
+          <line x1="15" y1="15" x2="65" y2="65" stroke="white" stroke-width="0.5"/>
+          <line x1="65" y1="15" x2="15" y2="65" stroke="white" stroke-width="0.5"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Healing Peptide</div>
+        <div class="product-name">TB-500</div>
+        <div class="product-desc">Thymosin Beta-4 fragment. Researched for its effects on cell migration, blood vessel formation, and recovery.</div>
+        <div class="product-footer">
+          <div class="product-price">$115.00</div>
+          <button class="product-add">Add to Cart</button>
+        </div>
+      </div>
+    </a>
+
+    <a href="#" class="product-card fade-up">
+      <div class="product-img">
+        <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="40,8 72,28 72,52 40,72 8,52 8,28" stroke="white" stroke-width="1"/>
+          <polygon points="40,22 58,32 58,48 40,58 22,48 22,32" stroke="white" stroke-width="1"/>
+          <circle cx="40" cy="40" r="7" fill="white" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Growth Peptide</div>
+        <div class="product-name">GHRP-6</div>
+        <div class="product-desc">Growth Hormone Releasing Peptide-6. Widely studied for GH secretion stimulation and appetite regulation research.</div>
+        <div class="product-footer">
+          <div class="product-price">$72.00</div>
+          <button class="product-add">Add to Cart</button>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="about" class="why-section">
+  <div class="why-left">
+    <div class="section-label">Why Pro Peptides</div>
+    <h2 class="section-title">Purity Is Not<br />Optional.</h2>
+    <p class="why-body">
+      Every compound we supply undergoes rigorous third-party HPLC analysis before it reaches our inventory. 
+      We believe research integrity starts with the source — and that means no compromises on quality, ever.
+      <br /><br />
+      Based in Canada, shipping across Canada. Proudly serving researchers, institutions, and independent labs.
+    </p>
+    <a href="#" class="why-cta">Our Quality Process</a>
+  </div>
+  <div class="why-right">
+    <div class="why-item fade-up">
+      <div class="why-icon">⬡</div>
+      <div>
+        <div class="why-item-title">Third-Party Lab Verified</div>
+        <div class="why-item-desc">Every batch is tested by independent HPLC labs. Certificates of analysis available for all products.</div>
+      </div>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-icon">◈</div>
+      <div>
+        <div class="why-item-title">Canadian-Based Operations</div>
+        <div class="why-item-desc">Sourced, stored, and shipped from Canada — faster delivery, no customs delays.</div>
+      </div>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-icon">⬚</div>
+      <div>
+        <div class="why-item-title">Discreet Packaging</div>
+        <div class="why-item-desc">All orders packaged discreetly with no product identifiers on the outside.</div>
+      </div>
+    </div>
+    <div class="why-item fade-up">
+      <div class="why-icon">◇</div>
+      <div>
+        <div class="why-item-title">Researcher Support</div>
+        <div class="why-item-desc">Dedicated support team with deep product knowledge for all your research needs.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="research" class="section process-section">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From Lab<br />To You</h2>
+    </div>
+  </div>
+  <div class="process-steps">
+    <div class="process-step fade-up">
+      <div class="step-num">01</div>
+      <div class="step-title">Synthesis</div>
+      <div class="step-desc">Peptides synthesized using solid-phase peptide synthesis (SPPS) under strict conditions.</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">02</div>
+      <div class="step-title">Verification</div>
+      <div class="step-desc">Mass spectrometry and HPLC testing at independent Canadian laboratories.</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">03</div>
+      <div class="step-title">Storage</div>
+      <div class="step-desc">Temperature-controlled storage ensures compound integrity until your order ships.</div>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">04</div>
+      <div class="step-title">Dispatch</div>
+      <div class="step-desc">Discreet, tracked shipping with 48-hour dispatch across Canada.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section">
+  <div class="section-header fade-up">
+    <div>
+      <div class="section-label">Verified Reviews</div>
+      <h2 class="section-title">What Researchers<br />Are Saying</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Consistently the purest product I've sourced in Canada. The COA documentation gives me full confidence in every order."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">DR</div>
+        <div>
+          <div class="author-name">Dr. R. Mendes</div>
+          <div class="author-title">Independent Researcher · Ontario</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Fast shipping, discreet packaging, and the purity is exactly as advertised. No other supplier comes close."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">JT</div>
+        <div>
+          <div class="author-name">J. Thompson</div>
+          <div class="author-title">Sports Science Lab · BC</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card fade-up">
+      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-text">"Been ordering BPC-157 for 18 months. Same quality every time. Their customer support team actually knows their products."</div>
+      <div class="testimonial-author">
+        <div class="author-avatar">AL</div>
+        <div>
+          <div class="author-name">A. Lefebvre</div>
+          <div class="author-title">Biochemistry Researcher · QC</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-label">Start Your Research</div>
+  <h2 class="cta-title">Ready to Order?</h2>
+  <p class="cta-sub">Browse 120+ compounds. Free shipping on orders over $150.<br />Purity-certified. Canadian-shipped.</p>
+  <div class="cta-actions">
+    <a href="#" class="btn-primary">Shop All Products</a>
+    <a href="#" class="btn-ghost">View Lab Reports</a>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<div class="newsletter-section">
+  <div class="newsletter-text">
+    <h3>Stay in the Loop</h3>
+    <p>New products, research updates, and exclusive offers. No spam.</p>
+  </div>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="your@email.com" />
+    <button class="newsletter-btn">Subscribe</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-logo">PRO<span>PEPTIDES</span></div>
+      <p class="footer-tagline">Canada's trusted source for research-grade peptides. Purity-certified, lab-verified, and shipped fast.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-icon">IG</a>
+        <a href="#" class="social-icon">TW</a>
+        <a href="#" class="social-icon">FB</a>
+        <a href="#" class="social-icon">TK</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">Growth Peptides</a></li>
+        <li><a href="#">Healing Peptides</a></li>
+        <li><a href="#">Weight Management</a></li>
+        <li><a href="#">Cognitive & Neuro</a></li>
+        <li><a href="#">Ancillaries</a></li>
+        <li><a href="#">View All</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Lab Reports</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Research Resources</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Pro Peptides. All rights reserved. For research use only.</div>
+    <div class="footer-legal">
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80 * (entry.target.dataset.delay || 0));
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach((el, i) => {
+    el.dataset.delay = i % 4;
+    observer.observe(el);
+  });
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 50
+      ? 'rgba(255,255,255,0.12)'
+      : 'rgba(255,255,255,0.08)';
+  });
+</script>
+</body>
+</html>
